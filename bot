@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Automation for Dental Practices | Transform Your Patient Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .chat-container {
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .user-message {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .bot-message {
+            background: #f3f4f6;
+            color: #1f2937;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #9ca3af;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .faq-button {
+            transition: all 0.3s ease;
+        }
+        
+        .faq-button:hover {
+            transform: translateX(8px);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 scroll-smooth">
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold gradient-text">DentalAI</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#demo" class="text-gray-700 hover:text-purple-600 transition">Live Demo</a>
+                    <a href="#features" class="text-gray-700 hover:text-purple-600 transition">Features</a>
+                    <a href="#results" class="text-gray-700 hover:text-purple-600 transition">Results</a>
+                    <a href="#contact" class="gradient-bg text-white px-6 py-2 rounded-full hover:opacity-90 transition">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 gradient-bg">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-white">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                        Transform Your Dental Practice with AI Automation
+                    </h1>
+                    <p class="text-xl mb-8 text-purple-100">
+                        Reduce staff workload by 60%, answer patient questions 24/7, and never miss an appointment opportunity again.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#demo" class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-purple-50 transition text-center">
+                            See Live Demo →
+                        </a>
+                        <a href="#contact" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition text-center">
+                            Schedule Call
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-animation">
+                    <div class="bg-white rounded-2xl shadow-2xl p-8">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white text-xl">🤖</div>
+                            <div>
+                                <div class="font-semibold">AI Assistant</div>
+                                <div class="text-sm text-green-500">● Online 24/7</div>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-purple-50 p-4 rounded-xl border-l-4 border-purple-600">
+                                <div class="text-sm text-gray-500 mb-1">Patient Question</div>
+                                <div class="font-medium">"Do you accept my insurance?"</div>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-600">
+                                <div class="text-sm text-gray-500 mb-1">Instant AI Response</div>
+                                <div class="font-medium">✓ Answered in 2 seconds</div>
+                                <div class="text-sm text-gray-600 mt-2">No staff time needed</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-white" id="results">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="stat-number">60%</div>
+                    <div class="text-gray-600 font-medium">Less Admin Work</div>
+                </div>
+                <div>
+                    <div class="stat-number">24/7</div>
+                    <div class="text-gray-600 font-medium">Patient Support</div>
+                </div>
+                <div>
+                    <div class="stat-number">2s</div>
+                    <div class="text-gray-600 font-medium">Response Time</div>
+                </div>
+                <div>
+                    <div class="stat-number">$0</div>
+                    <div class="text-gray-600 font-medium">Missed Calls</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Section -->
+    <section class="py-20 px-4 bg-gradient-to-b from-white to-purple-50" id="demo">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">See It In Action</h2>
+                <p class="text-xl text-gray-600">Try our AI assistant trained for dental practices. Click any question below or type your own!</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div class="gradient-bg text-white px-6 py-4 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">🦷</div>
+                        <div>
+                            <div class="font-semibold">SmileBright Dental AI</div>
+                            <div class="text-sm text-purple-200">Always ready to help</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                        <span class="text-sm">Active</span>
+                    </div>
+                </div>
+
+                <div class="chat-container">
+                    <div id="chatMessages" class="chat-messages">
+                        <div class="bot-message message">
+                            👋 Hi! I'm your SmileBright Dental assistant. I can help answer questions about appointments, insurance, services, and more. How can I help you today?
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 border-t">
+                        <div class="mb-3">
+                            <div class="text-sm text-gray-600 mb-2 font-medium">Quick questions to try:</div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <button class="faq-button bg-white border border-gray-200 px-4 py-3 rounded-xl text-left text-sm hover:shadow-md" onclick="askQuestion('What are your office hours?')">
+                                    🕐 What are your office hours?
+                                </button>
+                                <button class="faq-button bg-white border border-gray-200 px-4 py-3 rounded-xl text-left text-sm hover:shadow-md" onclick="askQuestion('Do you accept my insurance?')">
+                                    💳 Do you accept my insurance?
+                                </button>
+                                <button class="faq-button bg-white border border-gray-200 px-4 py-3 rounded-xl text-left text-sm hover:shadow-md" onclick="askQuestion('How much does teeth whitening cost?')">
+                                    ✨ How much does teeth whitening cost?
+                                </button>
+                                <button class="faq-button bg-white border border-gray-200 px-4 py-3 rounded-xl text-left text-sm hover:shadow-md" onclick="askQuestion('Do you offer emergency services?')">
+                                    🚨 Do you offer emergency services?
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-2">
+                            <input 
+                                type="text" 
+                                id="userInput" 
+                                placeholder="Or type your own question..." 
+                                class="flex-1 px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-600"
+                                onkeypress="if(event.key === 'Enter') sendMessage()"
+                            />
+                            <button 
+                                onclick="sendMessage()" 
+                                class="gradient-bg text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition"
+                            >
+                                Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center text-gray-600">
+                <p class="text-sm">💡 <strong>This is a live demo</strong> - your practice would have custom responses trained on YOUR information</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 px-4 bg-white" id="features">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Why Dental Practices Choose Our AI</h2>
+                <p class="text-xl text-gray-600">Everything you need to automate patient communication</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-3xl mb-6">⚡</div>
+                    <h3 class="text-2xl font-bold mb-4">Instant Responses</h3>
+                    <p class="text-gray-600">Answer patient questions in seconds, not hours. No more phone tag or waiting for callbacks.</p>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-3xl mb-6">🌙</div>
+                    <h3 class="text-2xl font-bold mb-4">24/7 Availability</h3>
+                    <p class="text-gray-600">Capture leads and answer questions even when your office is closed. Never miss an opportunity.</p>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-3xl mb-6">🎯</div>
+                    <h3 class="text-2xl font-bold mb-4">Custom Trained</h3>
+                    <p class="text-gray-600">Trained specifically on YOUR practice's information, services, and policies. Accurate every time.</p>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-3xl mb-6">💰</div>
+                    <h3 class="text-2xl font-bold mb-4">Reduce Costs</h3>
+                    <p class="text-gray-600">Save thousands on staffing while providing better patient service. Pay for itself in weeks.</p>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-3xl mb-6">📊</div>
+                    <h3 class="text-2xl font-bold mb-4">Smart Analytics</h3>
+                    <p class="text-gray-600">Track common questions, patient concerns, and conversation trends to improve your practice.</p>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-3xl mb-6">🔧</div>
+                    <h3 class="text-2xl font-bold mb-4">Easy Setup</h3>
+                    <p class="text-gray-600">Live on your website in 48 hours. No technical knowledge required. We handle everything.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before/After Section -->
+    <section class="py-20 px-4 bg-gradient-to-b from-white to-purple-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">The Difference Is Clear</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="text-3xl">😰</div>
+                        <h3 class="text-2xl font-bold text-red-900">Without AI Automation</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex gap-3">
+                            <span class="text-red-500 font-bold">✗</span>
+                            <span class="text-gray-700">Staff overwhelmed with repetitive questions</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-red-500 font-bold">✗</span>
+                            <span class="text-gray-700">Patients wait hours or days for simple answers</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-red-500 font-bold">✗</span>
+                            <span class="text-gray-700">Missed calls = missed appointments = lost revenue</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-red-500 font-bold">✗</span>
+                            <span class="text-gray-700">No support after hours or on weekends</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-red-500 font-bold">✗</span>
+                            <span class="text-gray-700">High staffing costs for basic inquiries</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-green-50 border-2 border-green-200 rounded-2xl p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="text-3xl">🚀</div>
+                        <h3 class="text-2xl font-bold text-green-900">With AI Automation</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex gap-3">
+                            <span class="text-green-500 font-bold">✓</span>
+                            <span class="text-gray-700">Staff focuses on high-value patient care</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-green-500 font-bold">✓</span>
+                            <span class="text-gray-700">Instant answers to common questions (2 seconds)</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-green-500 font-bold">✓</span>
+                            <span class="text-gray-700">Every inquiry captured and converted</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-green-500 font-bold">✓</span>
+                            <span class="text-gray-700">24/7 patient support, nights and weekends</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-green-500 font-bold">✓</span>
+                            <span class="text-gray-700">Fraction of the cost of additional staff</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 gradient-bg" id="contact">
+        <div class="max-w-4xl mx-auto text-center text-white">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to Transform Your Practice?</h2>
+            <p class="text-xl mb-8 text-purple-100">Let's discuss how AI automation can help your dental practice thrive. Free consultation, no commitment.</p>
+            
+            <div class="bg-white rounded-2xl p-8 text-gray-900 max-w-md mx-auto">
+                <h3 class="text-2xl font-bold mb-6 gradient-text">Get Your Free Demo</h3>
+                <form class="space-y-4">
+                    <input type="text" placeholder="Practice Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" required />
+                    <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" required />
+                    <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" required />
+                    <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" required />
+                    <button type="submit" class="w-full gradient-bg text-white py-4 rounded-lg font-semibold hover:opacity-90 transition text-lg">
+                        Schedule My Free Demo →
+                    </button>
+                </form>
+                <p class="text-sm text-gray-500 mt-4">✓ No credit card required  ✓ 15-minute call  ✓ See it customized for your practice</p>
+            </div>
+
+            <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center text-purple-100">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">📧</span>
+                    <span>sparky8684.gmail.com</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">📱</span>
+                    <span>+2349048728684</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="text-3xl font-bold gradient-text mb-4">DentalAI</div>
+            <p class="text-gray-400 mb-8">Transforming dental practices with intelligent automation</p>
+            <div class="flex justify-center gap-8 text-gray-400">
+                <a href="#demo" class="hover:text-white transition">Demo</a>
+                <a href="#features" class="hover:text-white transition">Features</a>
+                <a href="#results" class="hover:text-white transition">Results</a>
+                <a href="#contact" class="hover:text-white transition">Contact</a>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-gray-500 text-sm">
+                © 2024 DentalAI Solutions. Built with expertise and care for dental practices.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const responses = {
+            "what are your office hours?": "We're open Monday through Friday from 8:00 AM to 6:00 PM, and Saturdays from 9:00 AM to 2:00 PM. We're closed on Sundays. Need to schedule an appointment? I can help with that!",
+            "do you accept my insurance?": "We accept most major dental insurance plans including Delta Dental, Cigna, MetLife, Aetna, and United Healthcare. If you'd like, you can tell me your insurance provider and I can verify if we're in-network. We also offer flexible payment plans for patients without insurance!",
+            "how much does teeth whitening cost?": "Our professional teeth whitening service costs $399 and includes a custom-fitted tray for at-home maintenance. Most patients see results 3-4 shades whiter in just one visit! We also offer a premium in-office treatment for $599. Would you like to schedule a consultation?",
+            "do you offer emergency services?": "Yes! We provide same-day emergency dental services for urgent issues like severe pain, knocked-out teeth, broken crowns, or dental abscesses. Please call us immediately at (555) 123-4567 if you have a dental emergency, and we'll get you in as soon as possible - often within hours.",
+            "how do i schedule an appointment?": "Scheduling is easy! You can call us at (555) 123-4567, book online through our website's booking system, or I can have someone from our team reach out to you. What works best for you? We typically have appointments available within 3-5 business days, and emergency slots for urgent needs."
+        };
+
+        function askQuestion(question) {
+            document.getElementById('userInput').value = question;
+            sendMessage();
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            const messagesContainer = document.getElementById('chatMessages');
+            
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'user-message message';
+            userMessageDiv.textContent = message;
+            messagesContainer.appendChild(userMessageDiv);
+            
+            input.value = '';
+            
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'bot-message message typing-indicator';
+            typingDiv.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            setTimeout(() => {
+                messagesContainer.removeChild(typingDiv);
+                
+                const botMessageDiv = document.createElement('div');
+                botMessageDiv.className = 'bot-message message';
+                
+                const lowerMessage = message.toLowerCase();
+                let response = responses[lowerMessage];
+                
+                if (!response) {
+                    for (const [key, value] of Object.entries(responses)) {
+                        if (lowerMessage.includes(key.split(' ')[0]) || key.includes(lowerMessage.split(' ')[0])) {
+                            response = value;
+                            break;
+                        }
+                    }
+                }
+                
+                if (!response) {
+                    response = "That's a great question! While I can answer common questions about our hours, insurance, services, and appointments, I'd recommend calling our office at (555) 123-4567 for more specific information. Our friendly staff would be happy to help! Is there anything else I can answer from our quick questions above?";
+                }
+                
+                botMessageDiv.textContent = response;
+                messagesContainer.appendChild(botMessageDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1500);
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
